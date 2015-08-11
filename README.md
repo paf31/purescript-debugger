@@ -5,8 +5,6 @@ A simple console debugger for PureScript functions
 - [Module Documentation](docs/)
 - [Example](test/Main.purs)
 
-![Debugger](img/debugger.gif)
-
 ## Usage
 
     bower i purescript-debugger
