@@ -9,6 +9,10 @@
     "bower_components",
     "output"
   ],
+  "repository": {                                                          
+    "type": "git",                                                         
+    "url": "git://github.com/paf31/purescript-debugger.git"            
+  },
   "dependencies": {
     "purescript-console": "^0.1.0",
     "purescript-node-readline": "~0.3.1",
