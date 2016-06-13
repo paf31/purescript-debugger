@@ -6,15 +6,15 @@
 data Watch a
 ```
 
-A monad for collecting watches      
+A monad for collecting watches
 
 ##### Instances
 ``` purescript
-instance functorWatch :: Functor Watch
-instance applyWatch :: Apply Watch
-instance applicativeWatch :: Applicative Watch
-instance bindWatch :: Bind Watch
-instance monadWatch :: Monad Watch
+Functor Watch
+Apply Watch
+Applicative Watch
+Bind Watch
+Monad Watch
 ```
 
 #### `runWatch`
@@ -28,7 +28,7 @@ Get the list of watches.
 #### `watch`
 
 ``` purescript
-watch :: forall a. (Show a) => String -> a -> Watch Unit
+watch :: forall a. Show a => String -> a -> Watch Unit
 ```
 
 Define a watch
@@ -43,11 +43,11 @@ A monad for debugging pure functions
 
 ##### Instances
 ``` purescript
-instance functorDebug :: Functor Debug
-instance applyDebug :: Apply Debug
-instance applicativeDebug :: Applicative Debug
-instance bindDebug :: Bind Debug
-instance monadDebug :: Monad Debug
+Functor Debug
+Apply Debug
+Applicative Debug
+Bind Debug
+Monad Debug
 ```
 
 #### `resume`

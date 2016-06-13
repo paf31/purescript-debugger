@@ -1,20 +1,19 @@
 module Debug
-  ( Debug()
-  , Watch()
+  ( Debug
+  , Watch
   , runWatch
   , resume
   , break
   , watch
   ) where
-      
-import Prelude
-      
-import Data.List
-import Data.Monoid
-import Data.Either
-import Data.Tuple
 
--- | A monad for collecting watches      
+import Prelude
+
+import Data.Either (Either(..))
+import Data.List (List(..), singleton)
+import Data.Tuple (Tuple(..))
+
+-- | A monad for collecting watches
 data Watch a = Watch (List (Tuple String String)) a
 
 -- | Get the list of watches.
@@ -22,7 +21,7 @@ runWatch :: forall a. Watch a -> List (Tuple String String)
 runWatch (Watch ws _) = ws
 
 -- | Define a watch
-watch :: forall a. (Show a) => String -> a -> Watch Unit
+watch :: forall a. Show a => String -> a -> Watch Unit
 watch name value = Watch (singleton (Tuple name (show value))) unit
 
 instance functorWatch :: Functor Watch where
@@ -35,10 +34,12 @@ instance applicativeWatch :: Applicative Watch where
   pure = Watch Nil
 
 instance bindWatch :: Bind Watch where
-  bind (Watch ws a) f = case f a of Watch ws' b -> Watch (ws <> ws') b
+  bind (Watch ws a) f =
+    case f a of
+      Watch ws' b -> Watch (ws <> ws') b
 
 instance monadWatch :: Monad Watch
-  
+
 -- | A monad for debugging pure functions
 data Debug a = Done a | Break (Watch Unit) (Debug a)
 

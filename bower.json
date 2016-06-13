@@ -9,15 +9,15 @@
     "bower_components",
     "output"
   ],
-  "repository": {                                                          
-    "type": "git",                                                         
-    "url": "git://github.com/paf31/purescript-debugger.git"            
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/paf31/purescript-debugger.git"
   },
   "dependencies": {
-    "purescript-console": "^0.1.0",
-    "purescript-node-readline": "~0.3.1",
-    "purescript-lists": "~0.7.1",
-    "purescript-either": "~0.2.0",
-    "purescript-tuples": "~0.4.0"
+    "purescript-console": "^1.0.0",
+    "purescript-node-readline": "^1.0.0",
+    "purescript-lists": "^1.0.0",
+    "purescript-either": "^1.0.0",
+    "purescript-tuples": "^1.0.0"
   }
 }
