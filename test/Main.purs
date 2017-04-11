@@ -22,7 +22,7 @@ gcd n m
 
 main :: forall eff. Eff ( readline :: READLINE
                         , console :: CONSOLE
-                        , err :: EXCEPTION
+                        , exception :: EXCEPTION
                         | eff
                         ) Unit
 main = debug (gcd 242 12)
