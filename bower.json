@@ -15,10 +15,10 @@
     "url": "git://github.com/paf31/purescript-debugger.git"
   },
   "dependencies": {
-    "purescript-console": "^1.0.0",
-    "purescript-node-readline": "^1.0.0",
-    "purescript-lists": "^1.0.0",
-    "purescript-either": "^1.0.0",
-    "purescript-tuples": "^1.0.0"
+    "purescript-console": "^3.0.0",
+    "purescript-node-readline": "^3.0.0",
+    "purescript-lists": "^4.0.0",
+    "purescript-either": "^3.0.0",
+    "purescript-tuples": "^4.0.0"
   }
 }

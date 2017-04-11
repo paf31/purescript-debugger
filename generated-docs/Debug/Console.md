@@ -3,7 +3,7 @@
 #### `debug`
 
 ``` purescript
-debug :: forall a eff. Show a => Debug a -> Eff (readline :: READLINE, console :: CONSOLE, err :: EXCEPTION | eff) Unit
+debug :: forall a eff. Show a => Debug a -> Eff (readline :: READLINE, console :: CONSOLE, exception :: EXCEPTION | eff) Unit
 ```
 
 Run a debug session in the console
@@ -14,7 +14,7 @@ Run a debug session in the console
 #### `CONSOLE`
 
 ``` purescript
-data CONSOLE :: !
+data CONSOLE :: Effect
 ```
 
 The `CONSOLE` effect represents those computations which write to the
@@ -25,7 +25,7 @@ console.
 #### `EXCEPTION`
 
 ``` purescript
-data EXCEPTION :: !
+data EXCEPTION :: Effect
 ```
 
 This effect is used to annotate code which possibly throws exceptions
@@ -103,7 +103,7 @@ Define a breakpoint with the specified array of watches
 #### `READLINE`
 
 ``` purescript
-data READLINE :: !
+data READLINE :: Effect
 ```
 
 The effect of interacting with a stream via an `Interface`

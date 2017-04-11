@@ -24,7 +24,7 @@ debug
   => Debug a
   -> Eff ( readline :: READLINE
          , console :: CONSOLE
-         , err :: EXCEPTION
+         , exception :: EXCEPTION
          | eff
          ) Unit
 debug dbg = do
