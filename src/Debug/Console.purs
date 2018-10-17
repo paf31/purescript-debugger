@@ -2,45 +2,33 @@ module Debug.Console (debug, module R) where
 
 import Prelude
 
-import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Console (CONSOLE, log)
-import Control.Monad.Eff.Console (CONSOLE) as R
-import Control.Monad.Eff.Exception (EXCEPTION)
-import Control.Monad.Eff.Exception (EXCEPTION) as R
+import Effect (Effect)
+import Effect.Console (log)
 import Data.Either (Either(..))
 import Data.Foldable (for_)
 import Data.List (List(..), (:))
 import Data.Tuple (Tuple(..))
 import Debug (Debug, resume, runWatch)
 import Debug (Debug, Watch, resume, runWatch, watch, break) as R
-import Node.ReadLine (READLINE, LineHandler, Interface, setPrompt, noCompletion,
+import Node.ReadLine (LineHandler, Interface, setPrompt, noCompletion,
                       createConsoleInterface, prompt, setLineHandler, close)
-import Node.ReadLine (READLINE) as R
 
 -- | Run a debug session in the console
 debug
-  :: forall a eff
+  :: forall a
    . Show a
   => Debug a
-  -> Eff ( readline :: READLINE
-         , console :: CONSOLE
-         , exception :: EXCEPTION
-         | eff
-         ) Unit
+  -> Effect Unit
 debug dbg = do
     readline <- createConsoleInterface noCompletion
     setPrompt "λ> " 3 readline
     go readline Nil Nil dbg
   where
-    go :: forall eff1
-        . Interface
+    go :: Interface
        -> List (Debug a)
        -> List (Debug a)
        -> Debug a
-       -> Eff ( console :: CONSOLE
-              , readline :: READLINE
-              | eff1
-              ) Unit
+       -> Effect Unit
     go readline past future present = do
       case resume present of
         Left a -> void do
@@ -54,24 +42,16 @@ debug dbg = do
           input readline past future present
 
     input
-      :: forall eff1
-       . Interface
+      :: Interface
       -> List (Debug a)
       -> List (Debug a)
       -> Debug a
-      -> Eff ( readline :: READLINE
-             , console :: CONSOLE
-             | eff1
-             ) Unit
+      -> Effect Unit
     input readline past future present = void do
         setLineHandler readline handler
         prompt readline
       where
-        handler :: forall eff2
-                 . LineHandler ( console :: CONSOLE
-                               , readline :: READLINE
-                               | eff2
-                               ) Unit
+        handler :: LineHandler Unit
         handler "b" = case past of
           Nil -> void do
             log "Already at the oldest frame!"
@@ -93,11 +73,7 @@ debug dbg = do
           usage
           prompt readline
 
-    usage :: forall eff1
-           . Eff ( console :: CONSOLE
-                 , readline :: READLINE
-                 | eff1
-                 ) Unit
+    usage :: Effect Unit
     usage = do
       log "Available commands:"
       log ""
