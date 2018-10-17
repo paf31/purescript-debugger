@@ -3,32 +3,11 @@
 #### `debug`
 
 ``` purescript
-debug :: forall a eff. Show a => Debug a -> Eff (readline :: READLINE, console :: CONSOLE, exception :: EXCEPTION | eff) Unit
+debug :: forall a. Show a => Debug a -> Effect Unit
 ```
 
 Run a debug session in the console
 
-
-### Re-exported from Control.Monad.Eff.Console:
-
-#### `CONSOLE`
-
-``` purescript
-data CONSOLE :: Effect
-```
-
-The `CONSOLE` effect represents those computations which write to the
-console.
-
-### Re-exported from Control.Monad.Eff.Exception:
-
-#### `EXCEPTION`
-
-``` purescript
-data EXCEPTION :: Effect
-```
-
-This effect is used to annotate code which possibly throws exceptions
 
 ### Re-exported from Debug:
 
@@ -97,14 +76,4 @@ break :: Watch Unit -> Debug Unit
 ```
 
 Define a breakpoint with the specified array of watches
-
-### Re-exported from Node.ReadLine:
-
-#### `READLINE`
-
-``` purescript
-data READLINE :: Effect
-```
-
-The effect of interacting with a stream via an `Interface`
 

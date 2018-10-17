@@ -1,5 +1,22 @@
 ## Module Debug
 
+#### `Debug`
+
+``` purescript
+data Debug a
+```
+
+A monad for debugging pure functions
+
+##### Instances
+``` purescript
+Functor Debug
+Apply Debug
+Applicative Debug
+Bind Debug
+Monad Debug
+```
+
 #### `Watch`
 
 ``` purescript
@@ -25,31 +42,6 @@ runWatch :: forall a. Watch a -> List (Tuple String String)
 
 Get the list of watches.
 
-#### `watch`
-
-``` purescript
-watch :: forall a. Show a => String -> a -> Watch Unit
-```
-
-Define a watch
-
-#### `Debug`
-
-``` purescript
-data Debug a
-```
-
-A monad for debugging pure functions
-
-##### Instances
-``` purescript
-Functor Debug
-Apply Debug
-Applicative Debug
-Bind Debug
-Monad Debug
-```
-
 #### `resume`
 
 ``` purescript
@@ -65,5 +57,13 @@ break :: Watch Unit -> Debug Unit
 ```
 
 Define a breakpoint with the specified array of watches
+
+#### `watch`
+
+``` purescript
+watch :: forall a. Show a => String -> a -> Watch Unit
+```
+
+Define a watch
 
 

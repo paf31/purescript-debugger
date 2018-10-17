@@ -2,8 +2,8 @@ module Test.Main where
 
 import Prelude
 
-import Control.Monad.Eff (Eff)
-import Debug.Console (READLINE, CONSOLE, EXCEPTION, Debug, watch, break, debug)
+import Debug.Console (Debug, watch, break, debug)
+import Effect (Effect)
 
 gcd :: Int -> Int -> Debug Int
 gcd 0 m = pure m
@@ -20,9 +20,5 @@ gcd n m
         watch "m" m
       gcd n (m - n)
 
-main :: forall eff. Eff ( readline :: READLINE
-                        , console :: CONSOLE
-                        , exception :: EXCEPTION
-                        | eff
-                        ) Unit
+main :: Effect Unit
 main = debug (gcd 242 12)
